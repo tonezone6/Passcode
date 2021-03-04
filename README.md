@@ -18,14 +18,14 @@ extension SecureStorage: PasscodeStorageProtocol {
     }
 }
 ```
-and then just call `present(using:)` method
+Then, in order to present passcode modal screen, just use `present(using:)` 
 
 ```swift
 let mySecureStorage = SecureStorage()
 Passcode.present(using: mySecureStorage)
 ```
 
-Passcode also supports dark mode.
+Passcode also support dark mode.
 
 ![Passcode](Sources/light.png)
 ![Passcode](Sources/dark.png)
