@@ -2,26 +2,26 @@
 
 ### A simple passcode screen to protect your app.
 
-Firstly, extend your preffered storage to conform with the `PasscodeStorageProtocol` protocol.
+In order to present passcode modal screen, firstly conform your preffered storage with `PasscodeStorageProtocol`.
 
 ```swift
-struct SecureStorage { ... }
+struct MySecureStorage { ... }
 
-extension SecureStorage: PasscodeStorageProtocol {
+extension MySecureStorage: PasscodeStorageProtocol {
 
     public var passcode: String? {
-        load(key: "passcode")
+        load(key: "myPasscodeKey")
     }
     
     public func save(passcode: String) {
-        save(passcode, withKey: "passcode")
+        save(passcode, withKey: "myPasscodeKey")
     }
 }
 ```
-Then, in order to present passcode modal screen, just use `present(using:)` 
+Then just use `present(using:)` like this
 
 ```swift
-let mySecureStorage = SecureStorage()
+let mySecureStorage = MySecureStorage()
 Passcode.present(using: mySecureStorage)
 ```
 
