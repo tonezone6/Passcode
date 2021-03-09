@@ -77,34 +77,30 @@ private extension PasscodeView {
 extension PasscodeView {
     
     func setupLabels() {
-        titleLabel.font = .systemFont(ofSize: 20, weight: .heavy)
+        titleLabel.font = .preferredFont(forTextStyle: .headline)
         titleLabel.textColor = tint
         titleLabel.textAlignment = .center
         
-        descriptionLabel.font = .systemFont(ofSize: 16)
+        descriptionLabel.font = .preferredFont(forTextStyle: .body)
         descriptionLabel.textColor = tint
         descriptionLabel.textAlignment = .center
         descriptionLabel.numberOfLines = 0
     }
     
     func setupMainStack() {
-        let flexSpacer = UIView()
-        let firstSpacer = UIView()
-        let secondSpacer = UIView()
+        let vstack = VStack()
         
-        let vstack = VStack(spacing: spacing)
-        
-        vstack.addArrangedSubview(flexSpacer)
+        vstack.addArrangedSubview(UIView())
         vstack.addArrangedSubview(titleLabel)
         vstack.addArrangedSubview(descriptionLabel)
-        vstack.addArrangedSubview(firstSpacer)
         vstack.addArrangedSubview(pinsView)
-        vstack.addArrangedSubview(secondSpacer)
         vstack.addArrangedSubview(keyboardStack)
         
+        vstack.setCustomSpacing(16, after: titleLabel)
+        vstack.setCustomSpacing(8, after: descriptionLabel)
+        vstack.setCustomSpacing(24, after: pinsView)
+        
         let constraints = [
-            firstSpacer.heightAnchor.constraint(equalToConstant: 8),
-            secondSpacer.heightAnchor.constraint(equalToConstant: 8),
             vstack.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75),
             vstack.centerXAnchor.constraint(equalTo: centerXAnchor),
             vstack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 32),
@@ -140,7 +136,7 @@ extension PasscodeView {
         
         deleteButton.setTitle(deleteButtonTitle, for: .normal)
         deleteButton.addTarget(self, action: #selector(deleteButtonTapped(sender:)), for: .touchUpInside)
-        deleteButton.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
+        deleteButton.titleLabel?.font = .preferredFont(forTextStyle: .subheadline)
         deleteButton.setTitleColor(tint, for: .normal)
         
         let l1HStack = HStack(spacing: spacing, distribution: .fillEqually)
